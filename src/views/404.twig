@@ -1,0 +1,25 @@
+{% extends "root.html" %}
+{% block head %}
+  <title>Page not found</title>
+  {{ include('head.twig') }}
+{% endblock %}
+{% block header %}
+  {{ include('navigation.twig') }}
+  {{ include('header.twig') }}
+{% endblock %}
+{% block content %}
+  <section class="section">
+    <div id="container is-fluid">
+      <h1 class="title">
+        <strong>Ooooops!</strong> Page not found
+      </h1>
+      <h2 class="subtitle">
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or return to the <a href="{{ path_for('home') }}">Homepage</a>.
+      </h2>
+    </div>
+  </section>
+{% endblock %}
+{% block footer %}
+  {{ include('footer.twig') }}
+{% endblock %}

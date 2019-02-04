@@ -1,0 +1,245 @@
+{% extends "root.html" %}
+{% block head %}
+  <title>Notes List</title>
+  {{ include('head.twig') }}
+{% endblock %}
+{% block header %}
+  {{ include('navigation.twig') }}
+  {{ include('header.twig') }}
+{% endblock %}
+{% block content %}
+  <div class="modal" id="modal">
+    <div class="modal-background" onclick="openModal()"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Options</p>
+          <button class="delete" onclick="openModal()"></button>
+        </header>
+        <section class="modal-card-body">
+          <p class="heading has-text-centered">Select Subject</p>
+          <div class="field has-addons has-addons-centered">
+            <p class="control">
+              <span class="select">
+                <select name="sub" id="sub1">
+                  <option value="0">ALL</option>
+                  {% for subject in subjects %}
+                    <option value="{{ subject.id }}">{{ subject.en }}</option>
+                  {% endfor %}
+                </select>
+              </span>
+            </p>
+            <p class="control">
+              <span class="select">
+                <select name="sub" id="sub2" class="is-disabled">
+                  <option value="0">ALL</option>
+                  {% for subject in subjects %}
+                    <option value="{{ subject.id }}">{{ subject.en }}</option>
+                  {% endfor %}
+                </select>
+              </span>
+            </p>
+            <p class="control">
+              <span class="select">
+                <select name="sub" id="sub3" class="is-disabled">
+                  <option value="0">ALL</option>
+                  {% for subject in subjects %}
+                    <option value="{{ subject.id }}">{{ subject.en }}</option>
+                  {% endfor %}
+                </select>
+              </span>
+            </p>
+          </div>
+          <p class="heading has-text-centered">Sort Order</p>
+          <div class="field has-addons has-addons-centered">
+            <p class="control">
+              <button class="button is-primary" name="asc" id="asc" onclick="switchButton()">Ascending</button>
+            </p>
+            <p class="control">
+              <button class="button" name="desc" id="desc" onclick="switchButton()">Descending</button>
+            </p>
+          </div>
+          <p class="heading has-text-centered">Search Note</p>
+          <div class="field has-addons has-addons-centered">
+            <p class="control">
+              <input class="input" type="text" id="search" name="search" placeholder="Find a Note">
+            </p>
+            <p class="control">
+              <button class="button is-primary clear">Clear</button>
+            </p>
+          </div>
+          <p class="heading has-text-centered">Start from</p>
+          <div class="field has-addons has-addons-centered">
+            <p class="control">
+              <input class="input" type="text" name="from" id="from" placeholder="dd-mm-yyyy" maxlength="10" value="{{ "now"|date('Y-m-d') }}">
+            </p>
+            <p class="control">
+              <button class="button is-primary clock">Current date</button>
+            </p>
+          </div>
+          <p class="heading has-text-centered">Finish to</p>
+          <div class="field has-addons has-addons-centered">
+            <p class="control">
+              <input class="input" type="text" name="to" id="to" placeholder="dd-mm-yyyy" maxlength="10" value="{{ "now"|date('Y-m-d') }}">
+            </p>
+            <p class="control">
+              <button class="button is-primary clock">Current date</button>
+            </p>
+          </div>
+          <p class="heading has-text-centered">Date to search</p>
+          <div class="field has-addons has-addons-centered">
+            <p class="control">
+              <label class="checkbox">
+                <input name="insert" id="insert" type="checkbox">
+                Insert date
+              </label>
+              <label class="checkbox">
+                <input name="write" id="write" type="checkbox">
+                Write date
+              </label>
+            </p>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" onclick="updateTable()">
+            <span class="icon">
+              <i class="fa fa-check"></i>
+            </span>
+            <span>Confirm</span>
+          </button>
+        </footer>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Here you can see your Notes</h1>
+      <div class="columns">
+        <div class="column">
+          <a class="button is-success is-fullwidth" href="{{ path_for('new-note-subject') }}">
+            <span class="icon">
+              <i class="fa fa-plus"></i>
+            </span>
+            <span>Add new Note</span>
+          </a>
+        </div>
+        <div class="column">
+          <button class="button is-primary is-outlined is-fullwidth" onclick="openModal()">
+            <span class="icon">
+              <i class="fa fa-search"></i>
+            </span>
+            <span>Search options</span>
+          </button>
+        </div>
+        <!-- <div class="column">
+          <button class="button is-info is-fullwidth">
+            <span class="icon">
+              <i class="fa fa-file"></i>
+            </span>
+            <span>There aren't your subjects? Add new!</span>
+          </button>
+        </div> -->
+      </div>
+    </div>
+    <hr>
+    <div class="container is-fluid">
+      {% set empty = true %}
+      {% for subject in subjects %}
+        {% set ok = false %}
+        {% for note in notes %}
+          {% if note.subject == subject.en %}
+            {% set ok = true %}
+            {% set empty = false %}
+          {% endif %}
+        {% endfor %}
+        {% if ok %}
+          <div class="is-fullwidth">
+            <button class="accordion button is-dark is-large is-fullwidth" id="{{ subject.en }}">{{ subject.en }}</button>
+            <div class="panel" id="{{ subject.en }}" hidden>
+              {% set num = 0 %}
+              {% for note in notes %}
+                {% if note.subject == subject.en %}
+                  <button class="accordion button is-outlined is-fullwidth" id="{{ note.id }}">
+                    <span>{{ note.title }}</span>
+                  </button>
+                  <div class="panel" id="{{ note.id }}" hidden>
+                    {% for row in note.description %}
+                      <span>{{ row|raw }}</span>
+                      {% if loop.index != note.description|length %}
+                        <br>
+                      {% endif %}
+                    {% endfor %}
+                    <div class="columns">
+                      <div class="column">
+                        <a class="button is-success is-small is-fullwidth" href="{{ path_for('new-note', {"id" : note.id}) }}">
+                          <span class="icon is-small">
+                            <i class="fa fa-plus"></i>
+                          </span>
+                          <span>Add new Note to this one!</span>
+                        </a>
+                      </div>
+                      <div class="column">
+                        <a class="button is-info is-small is-fullwidth" href="{{ path_for('note', {"id" : note.id }) }}">
+                          <span class="icon is-small">
+                            <i class="fa fa-file"></i>
+                          </span>
+                          <span>Show this Note!</span>
+                        </a>
+                      </div>
+                      <div class="column">
+                        <a class="button is-warning is-small is-fullwidth" href="{{ path_for('mod-note', {"id" : note.id }) }}">
+                          <span class="icon is-small">
+                            <i class="fa fa-gears"></i>
+                          </span>
+                          <span>Modify this Note!</span>
+                        </a>
+                      </div>
+                      <div class="column">
+                        <button class="button is-danger is-small is-fullwidth" onclick="deleteNote(this)">
+                          <span class="icon is-small">
+                            <i class="fa fa-close"></i>
+                          </span>
+                          <span>Delete this Note!</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  {% set num = num + 1 %}
+                {% endif %}
+              {% endfor %}
+              {% if num == 0 %}
+                <div>
+                  <p>There isn't any Note for this subject.</p>
+                  <a class="button is-success is-small" href="{{ path_for('new-note-subject', { "subject" : subject.en }) }}">
+                    <span class="icon is-small">
+                      <i class="fa fa-plus"></i>
+                    </span>
+                    <span>Add one!</span>
+                  </a>
+                </div>
+              {% else %}
+                <div>
+                  <a class="button is-success is-small" href="{{ path_for('new-note-subject', { "subject" : subject.en }) }}">
+                    <span class="icon is-small">
+                      <i class="fa fa-plus"></i>
+                    </span>
+                    <span>Add new note!</span>
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+            <hr class="split">
+          </div>
+          {% set ok = false %}
+        {% endif %}
+      {% endfor %}
+      {% if empty %}
+        <div>
+          <h1 class="title has-text-centered">You haven't already insert any Notes.</h1>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+  <script src="http://localhost/EasyNotes/public/assets/javascript/notes.js"></script>
+{% endblock %}
+{% block footer %}
+  {{ include('footer.twig') }}
+{% endblock %}

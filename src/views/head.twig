@@ -1,0 +1,39 @@
+<!--remote stylesheet-->
+<!--request Bulma.io CSS-->
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous">
+<!--request Bootstrap icon font-->
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css"
+    crossorigin="anonymous">
+<link rel="stylesheet"
+    href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css"
+    crossorigin="anonymous">
+<!--remote jQuery-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    crossorigin="anonymous"></script>
+<!--local only-->
+{% if session.color is not null %}
+  {% if session.color == "orange" %}
+    <link rel="stylesheet" href="http://localhost/EasyNotes/public/assets/css/override_orange.css">
+  {% elseif session.color == "purple" %}
+    <link rel="stylesheet" href="http://localhost/EasyNotes/public/assets/css/override_purple.css">
+  {% elseif session.color == "green" %}
+    <link rel="stylesheet" href="http://localhost/EasyNotes/public/assets/css/override_green.css">
+  {% endif %}
+{% endif %}
+<link rel="stylesheet" href="http://localhost/EasyNotes/public/assets/css/style.css">
+<link rel="stylesheet" href="http://localhost/EasyNotes/public/assets/css/social.css">
+<!--set the website icon-->
+<link rel="shortcut icon" href="http://localhost/EasyNotes/public/assets/media/icon.ico" />
+<script src="http://localhost/EasyNotes/public/assets/javascript/SHA1.js"></script>
+<script>
+  var isMobile = false; //initiate as false
+  // device detection
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    isMobile = true;
+  }
+</script>

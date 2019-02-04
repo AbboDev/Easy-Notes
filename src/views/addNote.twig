@@ -1,0 +1,231 @@
+{% extends "root.html" %}
+{% block head %}
+  {% if note is not null %}
+    <title>Modify Note</title>
+  {% else %}
+    <title>New Note</title>
+  {% endif %}
+  {{ include('head.twig') }}
+{% endblock %}
+{% block header %}
+  {{ include('navigation.twig') }}
+  {{ include('header.twig') }}
+{% endblock %}
+{% block content %}
+  <section class="section">
+    <div class="container is-fluid">
+      {% if note is not null or sub is not null or parent is not null %}
+        {% if parent is not null %}
+          <h1 class="title has-text-centered">You are adding a Note to: <strong>{{ parent.title }}</strong></h1>
+        {% elseif sub is not null and sub != "" %}
+          <h1 class="title has-text-centered">You are adding a Note to: <strong>{{ sub }}</strong></h1>
+        {% endif %}
+        {% set post %}
+          {% if note is null %}
+            {{ path_for('add-note') }}
+          {% else %}
+            {{ path_for('update-note', { "id" : note.id}) }}
+          {% endif %}
+        {% endset %}
+        <form class="pure-form" method="post" action="{{ post }}">
+          <input name="parent" id="parent"
+            {% if parent is not null %}
+              value="{{ parent.id }}"
+            {% endif %}
+            hidden>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label" id="label-title">Title</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <input class="input check" name="title" id="title" type="text" placeholder="Insert Title"
+                    {% if note is not null %}
+                      value="{{ note.title }}"
+                    {% endif %}>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label" id="label-date-write">{% if note is not null %}Write {% endif %}Date</label>
+            </div>
+            <div class="field-body">
+              {% if note is null %}
+                <div class="field is-narrow">
+                  <div class="control">
+                    <input class="input" id="date-write" name="date">
+                    <div id="datepicker-write"></div>
+                  </div>
+                </div>
+              {% else %}
+                <div class="field is-grouped">
+                  <div class="control">
+                    <input class="input" id="date-write" name="date" value="{{ note.write }}">
+                    <div id="datepicker-write"></div>
+                  </div>
+                </div>
+                <div class="field-label is-normal">
+                  <label class="label" id="label-date-insert">Insertion Date</label>
+                </div>
+                <div class="field is-grouped">
+                  <div class="control">
+                    <input class="input" id="date-insert" name="date" value="{{ note.insert }}">
+                    <div id="datepicker-insert"></div>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label" id="label-subject">Subject</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select">
+                    {% if parent is null %}
+                      {% if note is null %}
+                        {% if sub is null or sub == "" %}
+                          <select name="subject" id="subject">
+                            {% for subject in subjects %}
+                              <option value="{{ subject.id }}">{{ subject.en }}</option>
+                            {% endfor %}
+                          </select>
+                        {% else %}
+                          <select name="subject" id="subject" class="is-disabled">
+                            {% for subject in subjects %}
+                              {% if subject.en == sub %}
+                                <option value="{{ subject.id }}">{{ subject.en }}</option>
+                              {% endif %}
+                            {% endfor %}
+                          </select>
+                        {% endif %}
+                      {% else %}
+                        <select name="subject" id="subject" class="is-disabled">
+                          {% for subject in subjects %}
+                            {% if subject.en == note.subject %}
+                              <option value="{{ subject.id }}">{{ subject.en }}</option>
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+                      {% endif %}
+                    {% else %}
+                      <select name="subject" id="subject" class="is-disabled">
+                        {% for subject in subjects %}
+                          {% if subject.en == parent.subject %}
+                            <option value="{{ subject.id }}">{{ subject.en }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label" id="label-note">Description</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <textarea class="textarea" placeholder="Insert your Note here"></textarea>
+                  <textarea name="note" id="note" hidden></textarea>
+                  <!-- <div class="textarea" contenteditable="true"></div>
+                  <div class="columns" id="buttonMenu">
+                    <div class="column">
+                      <button class="button is-black is-fullwidth">
+                        <span>Black</span>
+                      </button>
+                    </div>
+                    <div class="column">
+                      <button class="button is-danger is-fullwidth">
+                        <span>Red</span>
+                      </button>
+                    </div>
+                    <div class="column">
+                      <button class="button is-info is-fullwidth">
+                        <span>Blue</span>
+                      </button>
+                    </div>
+                    <div class="column">
+                      <button class="button is-success is-fullwidth">
+                        <span>Green</span>
+                      </button>
+                    </div>
+                    <div class="column">
+                      <button class="button is-warning is-fullwidth">
+                        <span>Yellow</span>
+                      </button>
+                    </div>
+                    <div class="column">
+                      <button class="button is-fullwidth">
+                        <span>Purple</span>
+                      </button>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <button id="confirm" class="button is-primary
+                    {% if note is not null %}
+                      ">Update note
+                    {% else %}
+                      is-disabled">Insert note
+                    {% endif %}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      {% else %}
+        <h1 class="title">There isn't any Note with the current ID</h1>
+        <h2 class="subtitle">Please go back to the <a href="{{ path_for('home') }}">Homepage</a></h2>
+      {% endif %}
+    </div>
+  </section>
+  {% if note is not null %}
+    <script>
+      $(document).ready(function () {
+        var description = [
+          {% for row in note.description %}
+            "{{ row|raw }}",
+          {% endfor %}];
+        var desc = "";
+        for (var i = 0; i < description.length; ++i) {
+          desc += htmlUnescape(description[i]);
+          if (i+1 < description.length) {
+            desc += "\r";
+          }
+        }
+        $("#note").prev().val(desc);
+      });
+      function htmlUnescape(str) {
+        return str
+          .replace(/&#34;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&');
+      }
+    </script>
+  {% endif %}
+  <script src="http://localhost/EasyNotes/public/assets/javascript/addNote.js"></script>
+{% endblock %}
+{% block footer %}
+  {{ include('footer.twig') }}
+{% endblock %}

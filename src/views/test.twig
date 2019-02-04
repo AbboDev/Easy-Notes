@@ -1,0 +1,136 @@
+{% extends "root.html" %}
+
+
+{% block head %}
+    <title>Testing Room</title>
+    {{ include('head.twig') }}
+    <style>
+        /* Style the buttons that are used to open and close the accordion panel */
+        button.accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        button.accordion.active, button.accordion:hover {
+            background-color: #ddd;
+        }
+
+        /* Style the accordion panel. Note: hidden by default */
+        div.panel {
+            padding: 0 10px;
+            background-color: white;
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    {{ include('navigation.twig') }}
+    {{ include('header.twig') }}
+{% endblock %}
+
+{% block content %}
+    <section class="section">
+        <div id="container">
+            <button class="accordion">Section 1</button>
+            <div class="panel">
+                <p>Lorem ipsum...</p>
+            </div>
+        </div>
+
+
+        {#<table class="table is-striped" >#}
+        {#<thead>#}
+        {#<tr>#}
+        {#<th>ID</th>#}
+        {#<th>Title</th>#}
+        {#<th>Preview</th>#}
+        {#<th>Write Date</th>#}
+        {#<th>Insert Date</th>#}
+        {#<th>Subject</th>#}
+        {#<th class="right">Action</th>#}
+        {#</tr>#}
+        {#</thead>#}
+        {#<tbody id="notes_table">#}
+        {#{% if notes|length > 0 %}#}
+        {#{% for note in notes %}#}
+        {#<tr id="{{ note.id }}">#}
+        {#<td id="id">{{ note.id }}</td>#}
+        {#<td id="title">{{ note.title }}</td>#}
+        {#<td id="desc">{{ note.description|first }}#}
+        {#{% if note.description|length > 1 %}#}
+        {#(...)#}
+        {#{% endif %}#}
+        {#</td>#}
+        {#<td id="write">{{ note.writedate }}</td>#}
+        {#<td id="insert">{{ note.insertdate }}</td>#}
+        {#<td id="subject">{{ note.subject }}</td>#}
+        {#<td id="action" class="right"><a href='{{ path_for('note', {"id" : note.id }) }}' class="button is-info">Show</a>#}
+        {#<a href='{{ path_for('mod-note', {"id" : note.id }) }}' class="button is-success">Modify</a>#}
+        {#<a href='{{ path_for('del-note', {"id" : note.id }) }}' class="button is-danger">Delete</a></td>#}
+        {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+        {#{% if notes|length >= 12 %}#}
+        {#<tfoot>#}
+        {#<tr>#}
+        {#<th>ID</th>#}
+        {#<th>Title</th>#}
+        {#<th>Preview</th>#}
+        {#<th>Write Date</th>#}
+        {#<th>Insert Date</th>#}
+        {#<th>Subject</th>#}
+        {#<th>Action</th>#}
+        {#</tr>#}
+        {#</tfoot>#}
+        {#{% endif %}#}
+        {#{% else %}#}
+        {#<div class="notification">#}
+        {#There aren't any Notes for you... :(#}
+        {#</div>#}
+        {#{% endif %}#}
+        {#</table>#}
+    </section>
+
+    <script>
+        var acc = $(".accordionz");
+        acc.each(function () {
+            var $this = $(this);
+            $this.click(function () {
+                $this.toggleClass("active");
+                var panel = $this.next();
+                panel.show();
+            });
+        });
+
+//        var acc = document.getElementsByClassName("accordion");
+//        var i;
+//        for (i = 0; i < acc.length; i++) {
+//            acc[i].onclick = function(){
+//                /* Toggle between adding and removing the "active" class,
+//                 to highlight the button that controls the panel */
+//                this.classList.toggle("active");
+//
+//                /* Toggle between hiding and showing the active panel */
+//                var panel = this.nextElementSibling;
+//                if (panel.style.display === "block") {
+//                    panel.style.display = "none";
+//                } else {
+//                    panel.style.display = "block";
+//                }
+//            }
+//        }
+    </script>
+{% endblock %}
+
+{% block footer %}
+    {{ include('footer.twig') }}
+{% endblock %}

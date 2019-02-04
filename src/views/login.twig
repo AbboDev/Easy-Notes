@@ -1,0 +1,120 @@
+{% extends "root.html" %}
+{% block head %}
+  <title>Login</title>
+  {{ include('head.twig') }}
+{% endblock %}
+{% block header %}
+  {{ include('navigation.twig') }}
+  {{ include('header.twig') }}
+{% endblock %}
+{% block content %}
+  <section class="section">
+    <div>
+      {% for req in arg %}
+        {{ req }}
+      {% endfor %}
+    </div>
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="notification is-info">
+            <h1 class="title">Log In</h1>
+            <h2 class="subtitle">Log into your Notes with your account</h2>
+          </div>
+          <form id="login" class="pure-form" method="post" action="{{ path_for('login') }}">
+            <div class="field">
+              <label class="label">Email or Nickname</label>
+              <p class="control">
+                <input name="logEmail" id="logEmail" class="input" type="text" placeholder="Insert your email or your nickname">
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <p class="control">
+                <input class="input" type="password" placeholder="Insert your password">
+                <input name="logPwd" id="logPwd" hidden>
+              </p>
+            </div>
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary is-disabled" id="logSubmit">
+                  Login
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="column">
+          <div class="notification is-info">
+            <h1 class="title">Sign In</h1>
+            <h2 class="subtitle">Create a new account</h2>
+          </div>
+          <form id="signin" class="pure-form" method="post" action="{{ path_for('signin') }}">
+            <div class="field">
+              <label class="label">Name and Surname</label>
+              <div id="parent" class="field is-horizontal">
+                <div class="field-body">
+                  <div class="field is-grouped">
+                    <p class="control is-expanded">
+                      <input name="signName" id="signName" class="input" type="text" placeholder="First Name">
+                    </p>
+                  </div>
+                  <div class="field is-grouped">
+                    <p class="control is-expanded">
+                      <input name="signSur" id="signSur" class="input" type="text" placeholder="Last name">
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Email</label>
+              <p class="control">
+                <input name="signEmail" id="signEmail" class="input" type="text"placeholder="Insert your email">
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Nickname</label>
+              <p class="control">
+                <input name="signNick" id="signNick" class="input" type="text"placeholder="Insert your nickname">
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <p class="control">
+                <input class="input" type="password" placeholder="Insert a strong password">
+                <input name="signPwd" id="signPwd" hidden>
+              </p>
+            </div>
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input name="signSpam" id="signSpam" type="checkbox">
+                  I don't want to receive update to my email
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary is-disabled" id="signSubmit">
+                  Sign in
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% if error != false %}
+    <script>
+      $(document).ready(function(){
+        alert("Wrong credentials!");
+      });
+    </script>
+  {% endif %}
+  <script src= "http://localhost/EasyNotes/public/assets/javascript/login.js"></script>
+{% endblock %}
+{% block footer %}
+  {{ include('footer.twig') }}
+{% endblock %}

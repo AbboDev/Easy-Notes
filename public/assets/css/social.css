@@ -1,0 +1,463 @@
+/*Facebook*/
+.button.is-fb {
+    background-color: #3b5998;
+    border-color: transparent;
+    color: #fff;
+}
+
+.button.is-fb:hover, .button.is-fb.is-hovered {
+    background-color: #5dc024;
+    border-color: transparent;
+    color: #fff;
+}
+
+.button.is-fb:focus, .button.is-fb.is-focused {
+    border-color: transparent;
+    box-shadow: 0 0 0.5em rgba(97, 211, 35, 0.5);
+    color: #fff;
+}
+
+.button.is-fb:active, .button.is-fb.is-active {
+    background-color: #50af20;
+    border-color: transparent;
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2);
+    color: #fff;
+}
+
+.button.is-fb.is-inverted {
+    background-color: #fff;
+    color: #3b5998;
+}
+
+.button.is-fb.is-outlined {
+    background-color: transparent;
+    border-color: #3b5998;
+    color: #3b5998;
+}
+
+.button.is-fb.is-outlined:hover, .button.is-fb.is-outlined:focus {
+    background-color: #3b5998;
+    border-color: #3b5998;
+    color: #fff;
+}
+
+.button.is-fb.is-outlined.is-loading:after {
+    border-color: transparent transparent #3b5998 #3b5998 !important;
+}
+
+.button.is-fb.is-inverted.is-outlined:hover, .button.is-fb.is-inverted.is-outlined:focus {
+    background-color: #fff;
+    color: #3b5998;
+}
+
+.input.is-fb,
+.textarea.is-fb {
+    border-color: #3b5998;
+}
+
+.help.is-fb {
+    color: #3b5998;
+}
+
+.notification.is-fb {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.progress.is-fb::-webkit-progress-value {
+    background-color: #3b5998;
+}
+
+.progress.is-fb::-moz-progress-bar {
+    background-color: #3b5998;
+}
+
+.tag.is-fb {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.message.is-fb .message-header {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.message.is-fb .message-body {
+    border-color: #3b5998;
+    color: #021310;
+}
+
+.hero.is-fb {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.hero.is-fb a,
+.hero.is-fb strong {
+    color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+    .hero.is-fb .nav-menu {
+        background-color: #3b5998;
+    }
+}
+
+.hero.is-fb .tabs.is-boxed li.is-active a, .hero.is-fb .tabs.is-boxed li.is-active a:hover, .hero.is-fb .tabs.is-toggle li.is-active a, .hero.is-fb .tabs.is-toggle li.is-active a:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #3b5998;
+}
+
+.hero.is-fb.is-bold {
+    background-image: -webkit-linear-gradient(309deg, #4ca234 0%, #3b5998 71%, #9bff77 100%);
+    background-image: linear-gradient(141deg, #4ca234 0%, #3b5998 71%, #9bff77 100%);
+}
+
+/*Google Plus*/
+.button.is-gp {
+    background-color: #dd4b39;
+    border-color: transparent;
+    color: #fff;
+}
+
+.button.is-gp:hover, .button.is-gp.is-hovered {
+    background-color: #5dc024;
+    border-color: transparent;
+    color: #fff;
+}
+
+.button.is-gp:focus, .button.is-gp.is-focused {
+    border-color: transparent;
+    box-shadow: 0 0 0.5em rgba(97, 211, 35, 0.5);
+    color: #fff;
+}
+
+.button.is-gp:active, .button.is-gp.is-active {
+    background-color: #50af20;
+    border-color: transparent;
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2);
+    color: #fff;
+}
+
+.button.is-gp.is-inverted {
+    background-color: #fff;
+    color: #dd4b39;
+}
+
+.button.is-gp.is-outlined {
+    background-color: transparent;
+    border-color: #dd4b39;
+    color: #dd4b39;
+}
+
+.button.is-gp.is-outlined:hover, .button.is-gp.is-outlined:focus {
+    background-color: #dd4b39;
+    border-color: #dd4b39;
+    color: #fff;
+}
+
+.button.is-gp.is-outlined.is-loading:after {
+    border-color: transparent transparent #dd4b39 #dd4b39 !important;
+}
+
+.button.is-gp.is-inverted.is-outlined:hover, .button.is-gp.is-inverted.is-outlined:focus {
+    background-color: #fff;
+    color: #dd4b39;
+}
+
+.input.is-gp,
+.textarea.is-gp {
+    border-color: #dd4b39;
+}
+
+.help.is-gp {
+    color: #dd4b39;
+}
+
+.notification.is-gp {
+    background-color: #dd4b39;
+    color: #fff;
+}
+
+.progress.is-gp::-webkit-progress-value {
+    background-color: #dd4b39;
+}
+
+.progress.is-gp::-moz-progress-bar {
+    background-color: #dd4b39;
+}
+
+.tag.is-gp {
+    background-color: #dd4b39;
+    color: #fff;
+}
+
+.message.is-gp .message-header {
+    background-color: #dd4b39;
+    color: #fff;
+}
+
+.message.is-gp .message-body {
+    border-color: #dd4b39;
+    color: #021310;
+}
+
+.hero.is-gp {
+    background-color: #dd4b39;
+    color: #fff;
+}
+
+.hero.is-gp a,
+.hero.is-gp strong {
+    color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+    .hero.is-gp .nav-menu {
+        background-color: #dd4b39;
+    }
+}
+
+.hero.is-gp .tabs.is-boxed li.is-active a, .hero.is-gp .tabs.is-boxed li.is-active a:hover, .hero.is-gp .tabs.is-toggle li.is-active a, .hero.is-gp .tabs.is-toggle li.is-active a:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #dd4b39;
+}
+
+.hero.is-gp.is-bold {
+    background-image: -webkit-linear-gradient(309deg, #4ca234 0%, #dd4b39 71%, #9bff77 100%);
+    background-image: linear-gradient(141deg, #4ca234 0%, #dd4b39 71%, #9bff77 100%);
+}
+
+/*Twitter*/
+.button.is-tw {
+    background-color: #45b0e3;
+    border-color: transparent;
+    color: #fff;
+}
+
+.button.is-tw:hover, .button.is-tw.is-hovered {
+    background-color: #5dc024;
+    border-color: transparent;
+    color: #fff;
+}
+
+.button.is-tw:focus, .button.is-tw.is-focused {
+    border-color: transparent;
+    box-shadow: 0 0 0.5em rgba(97, 211, 35, 0.5);
+    color: #fff;
+}
+
+.button.is-tw:active, .button.is-tw.is-active {
+    background-color: #50af20;
+    border-color: transparent;
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2);
+    color: #fff;
+}
+
+.button.is-tw.is-inverted {
+    background-color: #fff;
+    color: #45b0e3;
+}
+
+.button.is-tw.is-outlined {
+    background-color: transparent;
+    border-color: #45b0e3;
+    color: #45b0e3;
+}
+
+.button.is-tw.is-outlined:hover, .button.is-tw.is-outlined:focus {
+    background-color: #45b0e3;
+    border-color: #45b0e3;
+    color: #fff;
+}
+
+.button.is-tw.is-outlined.is-loading:after {
+    border-color: transparent transparent #45b0e3 #45b0e3 !important;
+}
+
+.button.is-tw.is-inverted.is-outlined:hover, .button.is-tw.is-inverted.is-outlined:focus {
+    background-color: #fff;
+    color: #45b0e3;
+}
+
+.input.is-tw,
+.textarea.is-tw {
+    border-color: #45b0e3;
+}
+
+.help.is-tw {
+    color: #45b0e3;
+}
+
+.notification.is-tw {
+    background-color: #45b0e3;
+    color: #fff;
+}
+
+.progress.is-tw::-webkit-progress-value {
+    background-color: #45b0e3;
+}
+
+.progress.is-tw::-moz-progress-bar {
+    background-color: #45b0e3;
+}
+
+.tag.is-tw {
+    background-color: #45b0e3;
+    color: #fff;
+}
+
+.message.is-tw .message-header {
+    background-color: #45b0e3;
+    color: #fff;
+}
+
+.message.is-tw .message-body {
+    border-color: #45b0e3;
+    color: #021310;
+}
+
+.hero.is-tw {
+    background-color: #45b0e3;
+    color: #fff;
+}
+
+.hero.is-tw a,
+.hero.is-tw strong {
+    color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+    .hero.is-tw .nav-menu {
+        background-color: #45b0e3;
+    }
+}
+
+.hero.is-tw .tabs.is-boxed li.is-active a, .hero.is-tw .tabs.is-boxed li.is-active a:hover, .hero.is-tw .tabs.is-toggle li.is-active a, .hero.is-tw .tabs.is-toggle li.is-active a:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #45b0e3;
+}
+
+.hero.is-tw.is-bold {
+    background-image: -webkit-linear-gradient(309deg, #4ca234 0%, #45b0e3 71%, #9bff77 100%);
+    background-image: linear-gradient(141deg, #4ca234 0%, #45b0e3 71%, #9bff77 100%);
+}
+
+/*LinkedIn*/
+.button.is-li {
+    background-color: #0177b5;
+    border-color: transparent;
+    color: #fff;
+}
+
+.button.is-li:hover, .button.is-li.is-hovered {
+    background-color: #5dc024;
+    border-color: transparent;
+    color: #fff;
+}
+
+.button.is-li:focus, .button.is-li.is-focused {
+    border-color: transparent;
+    box-shadow: 0 0 0.5em rgba(97, 211, 35, 0.5);
+    color: #fff;
+}
+
+.button.is-li:active, .button.is-li.is-active {
+    background-color: #50af20;
+    border-color: transparent;
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2);
+    color: #fff;
+}
+
+.button.is-li.is-inverted {
+    background-color: #fff;
+    color: #0177b5;
+}
+
+.button.is-li.is-outlined {
+    background-color: transparent;
+    border-color: #0177b5;
+    color: #0177b5;
+}
+
+.button.is-li.is-outlined:hover, .button.is-li.is-outlined:focus {
+    background-color: #0177b5;
+    border-color: #0177b5;
+    color: #fff;
+}
+
+.button.is-li.is-outlined.is-loading:after {
+    border-color: transparent transparent #0177b5 #0177b5 !important;
+}
+
+.button.is-li.is-inverted.is-outlined:hover, .button.is-li.is-inverted.is-outlined:focus {
+    background-color: #fff;
+    color: #0177b5;
+}
+
+.input.is-li,
+.textarea.is-li {
+    border-color: #0177b5;
+}
+
+.help.is-li {
+    color: #0177b5;
+}
+
+.notification.is-li {
+    background-color: #0177b5;
+    color: #fff;
+}
+
+.progress.is-li::-webkit-progress-value {
+    background-color: #0177b5;
+}
+
+.progress.is-li::-moz-progress-bar {
+    background-color: #0177b5;
+}
+
+.tag.is-li {
+    background-color: #0177b5;
+    color: #fff;
+}
+
+.message.is-li .message-header {
+    background-color: #0177b5;
+    color: #fff;
+}
+
+.message.is-li .message-body {
+    border-color: #0177b5;
+    color: #021310;
+}
+
+.hero.is-li {
+    background-color: #0177b5;
+    color: #fff;
+}
+
+.hero.is-li a,
+.hero.is-li strong {
+    color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+    .hero.is-li .nav-menu {
+        background-color: #0177b5;
+    }
+}
+
+.hero.is-li .tabs.is-boxed li.is-active a, .hero.is-li .tabs.is-boxed li.is-active a:hover, .hero.is-li .tabs.is-toggle li.is-active a, .hero.is-li .tabs.is-toggle li.is-active a:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #0177b5;
+}
+
+.hero.is-li.is-bold {
+    background-image: -webkit-linear-gradient(309deg, #4ca234 0%, #0177b5 71%, #9bff77 100%);
+    background-image: linear-gradient(141deg, #4ca234 0%, #0177b5 71%, #9bff77 100%);
+}

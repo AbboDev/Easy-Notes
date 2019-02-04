@@ -1,0 +1,60 @@
+{% extends "root.html" %}
+{% block head %}
+  <title>Note</title>
+  {{ include('head.twig') }}
+{% endblock %}
+{% block header %}
+  {{ include('navigation.twig') }}
+  {{ include('header.twig') }}
+{% endblock %}
+{% block content %}
+  <section class="section">
+    <div class="container is-fluid">
+      {% if note is not null %}
+        <div class="notification is-primary">
+          <h1 class="title">{{ note.title }}</h1>
+          <h2 class="subtitle">(ID: {{ note.id }})</h2>
+        </div>
+        <div class="notification">
+          {% for row in note.description %}
+            <span>{{ row }}</span>
+            {% if loop.index != note.description|length %}
+              <br>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <button name="modify" id="modify" class="button is-warning">
+          <span class="icon">
+            <i class="fa fa-gears"></i>
+          </span>
+          <span>Modify</span>
+        </button>
+        <button name="delete" id="delete" class="button is-danger">
+          <span class="icon">
+            <i class="fa fa-window-close"></i>
+          </span>
+          <span>Delete</span>
+        </button>
+      {% else %}
+        <h1 class="title">There isn't any Note with the current ID</h1>
+        <h2 class="subtitle">Please go back to the <a href="{{ path_for('home') }}">Homepage</a></h2>
+      {% endif %}
+    </div>
+  </section>
+  <script>
+    $(document).ready(function () {
+      $("#modify").click(function () {
+        window.location.href = "{{ path_for('mod-note', {"id" : note.id }) }}";
+      });
+      $("#delete").click(function () {
+        var ok = confirm("Do you really want to delete this Note, along with its children?");
+        if (ok) {
+          window.location.href = "{{ path_for('del-note', {"id" : note.id }) }}";
+        }
+      });
+    });
+  </script>
+{% endblock %}
+{% block footer %}
+  {{ include('footer.twig') }}
+{% endblock %}

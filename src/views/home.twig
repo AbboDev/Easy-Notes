@@ -1,0 +1,24 @@
+{% extends "root.html" %}
+{% block head %}
+  <title>Home</title>
+  {{ include('head.twig') }}
+{% endblock %}
+{% block header %}
+  {{ include('navigation.twig') }}
+  {{ include('header.twig') }}
+{% endblock %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Home Page</h1>
+      <div class="notification">
+        <p>
+          This is the <strong>COOL HOME PAGE</strong> of this site!
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+{% block footer %}
+  {{ include('footer.twig') }}
+{% endblock %}

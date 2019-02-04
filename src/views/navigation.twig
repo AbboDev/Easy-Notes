@@ -1,0 +1,55 @@
+<nav class="nav nav-grey">
+  <div class="nav-left">
+    <span class="nav-item">
+      <img src="http://localhost/EasyNotes/public/assets/media/easy_notes-logo.png">
+    </span>
+  </div>
+  <div class="nav-center">
+    {% if session.user is not null %}
+      <span class="nav-item">
+        <a class="button is-primary is-outlined" href="{{ path_for('account') }}">
+          <span class="icon">
+            <i class="fa fa-user-circle"></i>
+          </span>
+          <span>Hi, {{ session.user }}!</span>
+        </a>
+      </span>
+    {% endif %}
+  </div>
+  <span class="nav-toggle" id="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+  <div class="nav-right nav-menu" id="nav-menu">
+    <a class="nav-item" href="{{ path_for('home') }}">Home</a>
+    <a class="nav-item" href="{{ path_for('notes') }}">Show Notes</a>
+    <a class="nav-item" href="{{ path_for('new-note-subject') }}">New Note</a>
+    <span class="nav-item">
+      <a class="button is-primary"
+          {% if session.user is null %}
+              href="{{ path_for('log') }}"
+          {% else %}
+              href="{{ path_for('logout') }}"
+          {% endif %}>
+        <span class="icon">
+          <i class="fa fa-user"></i>
+        </span>
+        <span>
+          {% if session.user is null %}
+            Login
+          {% else %}
+            Logout
+          {% endif %}
+        </span>
+      </a>
+    </span>
+  </div>
+  <script>
+    $(document).ready(function(){
+      $("#nav-toggle").click(function () {
+        $("#nav-menu").toggleClass("is-active")
+      })
+    });
+  </script>
+</nav>

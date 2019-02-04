@@ -1,0 +1,109 @@
+{% extends "root.html" %}
+{% block head %}
+  <title>Account | {{ user.nickname }}</title>
+  {{ include('head.twig') }}
+{% endblock %}
+{% block header %}
+  {{ include('navigation.twig') }}
+  {{ include('header.twig') }}
+{% endblock %}
+{% block content %}
+  <section class="section">
+    <div class="container is-fluid">
+      <div class="notification is-primary">
+        <h1 class="title">
+          Your nickname: {{ user.nickname }}
+        </h1>
+      </div>
+      <form id="login" class="pure-form" method="post" action="{{ path_for('mod-account') }}">
+        <div id="params" class="notification">
+          <div>
+            <h1 class="title">Current credentials</h1>
+          </div>
+          <div class="field">
+            <span class="subtitle">Name: </span>
+            <h2 class="subtitle"><strong>{{ user.firstname }}</strong></h2>
+            <p class="control" hidden>
+              <input id="name" name="name" class="input" type="text" value="{{ user.firstname }}">
+            </p>
+          </div>
+          <hr class="split">
+          <div class="field" >
+            <span class="subtitle">Surname: </span>
+            <h2 class="subtitle"><strong>{{ user.lastname }}</strong></h2>
+            <p class="control" hidden>
+              <input id="surname" name="surname" class="input" type="text" value="{{ user.lastname }}">
+            </p>
+          </div>
+          <hr class="split">
+          <div class="field">
+            <span class="subtitle">Email: </span>
+            <h2 class="subtitle"><strong>{{ user.email }}</strong></h2>
+            <p class="control" hidden>
+              <input id="email" name="email" class="input" type="text" value="{{ user.email }}" hidden>
+            </p>
+          </div>
+          <hr class="split">
+          <div class="field">
+            <span class="subtitle">Password (crypted with SHA1): </span>
+            <h2 class="subtitle"><strong>{{ user.password }}</strong></h2>
+            <p class="control" hidden>
+              <input class="input" type="password" placeholder="Insert new Password" hidden>
+              <input name="pwd" id="pwd" hidden>
+            </p>
+          </div>
+          <hr class="split">
+          <div class="field">
+            <span class="subtitle">Current color: </span>
+            <h2 class="subtitle">
+              <strong>{{ user.color }}</strong>
+              {% if user.color == "cyano" %}<span>(Default)</span>{% endif %}
+            </h2>
+            <p class="control" hidden>
+              <span class="select">
+                <select name="color" id="color">
+                  <option value="cyano" {% if user.color == "cyano" %}selected{% endif %}>cyano</option>
+                  <option value="orange" {% if user.color == "orange" %}selected{% endif %}>orange</option>
+                  <option value="green" {% if user.color == "green" %}selected{% endif %}>green</option>
+                  <option value="purple" {% if user.color == "purple" %}selected{% endif %}>purple</option>
+                </select>
+              </span>
+            </p>
+          </div>
+          <hr class="split">
+          <div class="field">
+            <span class="subtitle">Send information mail:</span>
+            <h2 class="subtitle"><strong>{% if user.spam == 1 %}YES{% else %}NO{% endif %}</strong></h2>
+            <p class="control" hidden>
+              <label class="radio">
+                <input type="radio" name="spam" id="spam" value=1
+                   {% if user.spam == 1 %}checked="checked"{% endif %}>Yes</label>
+              <label class="radio">
+                <input type="radio" name="spam" id="spam" value=0
+                   {% if user.spam == 0 %}checked="checked"{% endif %}>No</label>
+            </p>
+          </div>
+        </div>
+        <p id="btn-group">
+          <button class="button is-info" id="modify">
+            <span class="icon">
+              <i class="fa fa-gears"></i>
+            </span>
+            <span id="btn">Modify</span>
+          </button>
+          <button class="button is-danger" id="cancel" style="display:none;">
+            <span class="icon">
+              <i class="fa fa-window-close"></i>
+            </span>
+            <span id="btn">Cancel</span>
+          </button>
+        </p>
+      </form>
+    </div>
+  </section>
+  <script src="assets/javascript/showUser.js">
+  </script>
+{% endblock %}
+{% block footer %}
+  {{ include('footer.twig') }}
+{% endblock %}
